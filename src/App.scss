@@ -1,0 +1,95 @@
+@mixin flexBasic($direction, $align, $justify, $gap) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+}
+
+.app {
+  height: 100%;
+  @include flexBasic("", center, space-between, 60px);
+  padding: 60px 90px;
+  flex: 1 1 100%;
+  .column-one {
+    height: 100%;
+    @include flexBasic(column, flex-start, space-between, "");
+    flex: 1 1 40%;
+  }
+  .column-two {
+    height: 100%;
+    flex: 1 1 60%;
+    border-radius: 5px;
+    overflow: hidden;
+    #download-area {
+      height: 70%;
+    }
+    .header {
+      background: #ffddb6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 70px;
+      .header-label {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        .cat-image {
+          background: #fff;
+          height: 35px;
+          width: 35px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .site-name {
+        font-family: "Candy Beans";
+        font-size: 18px;
+        color: #adfeff;
+      }
+    }
+    .content {
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+      border: 1px solid #adfeff;
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    .content > div > div > div:first-child {
+      flex-direction: column;
+    }
+    .content > div > div > div > div:first-child {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 10px;
+      column-gap: 5px;
+    }
+    #button-area {
+      height: 29%;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+    }
+  }
+  .button {
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: -3px 0 #adfeff, 0 9px #adfeff;
+    font-family: "The Kids Mraker";
+    padding: 16px 40px;
+    height: max-content;
+    font-size: 24px;
+  }
+  .button:active {
+    transform: translate(-2px, 4px);
+  }
+}
