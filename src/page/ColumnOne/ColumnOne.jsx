@@ -10,7 +10,9 @@ const ColumnOne = ({ connect, disconnect, active }) => {
             alt={"rainbow-cat"}
             style={{ width: "180px" }}
           />
-          <h1 style={{ fontSize: "40px" }}>View and flex your NFTs</h1>
+          <div style={{ fontSize: "40px" }}>
+            View and flex your NFTs
+          </div>
         </div>
         <button className={`button`} onClick={active ? disconnect : connect}>
           {active ? `Disconnect ` : `Connect `}Wallet

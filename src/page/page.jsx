@@ -7,7 +7,7 @@ import ColumnOne from "./ColumnOne/ColumnOne";
 import ColumnTwo from "./ColumnTwo/ColumnTwo";
 
 const Page = (props) => {
-  const { active, account, activate, deactivate } = useWeb3React();
+  const { active, account, activate, deactivate, chainId } = useWeb3React();
 
   const [userNFTs, setUserNFTs] = useState([]);
   const [allReceived, setAllReceived] = useState(false);
@@ -106,7 +106,7 @@ const Page = (props) => {
     }
   }
 
-  return (
+  return active && chainId !== 1 ? null : (
     <div className={`app`}>
       <ColumnOne
         active={active ? true : false}
