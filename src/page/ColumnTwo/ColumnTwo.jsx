@@ -2,7 +2,7 @@ import "../../App.scss";
 import { toPng } from "html-to-image";
 import { useCallback, useRef, useState } from "react";
 import { Error, Loader } from "../../components";
-import { exportComponentAsPNG } from "react-component-export-image";
+import imageViewingConfig from "../../styles/imageViewingConfig";
 
 const ColumnTwo = ({
   active,
@@ -87,8 +87,7 @@ const ColumnTwo = ({
                       <img
                         src={`${nft.image_url || "assets/images/Question.png"}`}
                         style={{
-                          maxHeight: userNFTs?.length < 10 ? "150px" : "40px",
-                          maxWidth: userNFTs?.length < 10 ? "150px" : "40px",
+                          ...imageViewingConfig(userNFTs.length),
                           minHeight: "40px",
                           minWidth: "40px"
                         }}

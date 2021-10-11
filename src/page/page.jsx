@@ -28,7 +28,10 @@ const Page = (props) => {
   }, [address]);
 
   useEffect(() => {
-    if (active) getNFTs(pagination);
+    if (active) {
+      getNFTs(pagination);
+      window.history.replaceState(null, "", `/${account}`);
+    }
   }, [active]);
 
   useEffect(() => {
@@ -81,7 +84,9 @@ const Page = (props) => {
 
   async function connect() {
     try {
-      if (!active) setUserNFTs([]);
+      if (!active) {
+        setUserNFTs([]);
+      }
       await activate(injectors);
     } catch (e) {
       console.log(e);
