@@ -86,6 +86,11 @@ const Page = (props) => {
     try {
       if (!active) {
         setUserNFTs([]);
+        setAddress("");
+        setPagination({
+          offset: 0,
+          limit: 50
+        });
       }
       await activate(injectors);
     } catch (e) {
