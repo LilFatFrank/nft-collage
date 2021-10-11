@@ -1,36 +1,65 @@
 import "../../App.scss";
-import { NftGallery } from "react-nft-gallery";
 import { toPng } from "html-to-image";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
+import { Error, Loader } from "../../components";
+import { exportComponentAsPNG } from "react-component-export-image";
 
-const ColumnTwo = ({ active, account, userNFTs }) => {
+const ColumnTwo = ({
+  active,
+  account,
+  userNFTs,
+  allReceived,
+  updatePagination,
+  loading,
+  error
+}) => {
   const ref = useRef();
+  const [downloading, setDownloading] = useState(false);
+  const [hide, setHide] = useState(true);
 
   const onButtonClick = useCallback(() => {
-    const downloadArea = document.getElementById("download-area");
-    const button = downloadArea.getElementsByTagName("button");
-    if (button[0]) button[0].style.display = "none";
-
     if (ref.current === null) {
       return;
     }
-
+    setDownloading(true);
+    const content = document.getElementsByClassName("content")[0];
+    content.style.overflow = "hidden";
     toPng(ref.current, { cacheBust: true })
       .then((dataUrl) => {
         const link = document.createElement("a");
         link.download = "my-nfts.png";
         link.href = dataUrl;
         link.click();
-        if (button[0]) button[0].style.display = "none";
+        setDownloading(false);
+        content.style.overflow = "visible";
       })
       .catch((err) => {
         console.log(err);
-        if (button[0]) button[0].style.display = "none";
+        setDownloading(false);
       });
   }, [ref]);
 
   return (
     <>
+      <div className={`success-note ${hide ? "hide" : ""}`}>
+        <div
+          style={{
+            padding: "20px",
+            border: "1px solid #adfeff",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px"
+          }}
+        >
+          <img
+            src={"assets/svgs/circle.svg"}
+            alt={"Success"}
+            style={{ width: "24px" }}
+          />
+          Link Copied!
+        </div>
+      </div>
       <div className={`column-two`}>
         <div id="download-area" ref={ref}>
           <div className={`header`}>
@@ -49,57 +78,88 @@ const ColumnTwo = ({ active, account, userNFTs }) => {
             </div>
             <div className={`site-name`}>mynfts.show</div>
           </div>
-          <div className={`content`}>
-            {active ? (
-              <NftGallery
-                ownerAddress={account}
-                showcaseMode
-                showcaseItemIds={userNFTs?.result?.map(
-                  (nft) => `${nft.token_address}/${nft.token_id}`
-                )}
-                metadataIsVisible={false}
-                galleryContainerStyle={{
-                  display: "flex",
-                  height: "100%",
-                  width: "100%",
-                  padding: "10px"
-                }}
-                itemContainerStyle={{
-                  minWidth: "40px",
-                  minHeight: "40px",
-                  maxWidth: "80px",
-                  maxHeight: "80px"
-                }}
-                imgContainerStyle={{
-                  width: "100%",
-                  height: "100%"
-                }}
-                isInline
-                hasExternalLinks={false}
-              />
-            ) : (
-              <div
-                style={{
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}
-              >
-                Connect your wallet
-              </div>
-            )}
+          <div className={`content-area`}>
+            <div className={`content`}>
+              {active && !error ? (
+                userNFTs?.length ? (
+                  <>
+                    {userNFTs?.map((nft) => (
+                      <img
+                        src={`${nft.image_url || "assets/images/Question.png"}`}
+                        style={{
+                          maxHeight: userNFTs?.length < 10 ? "150px" : "40px",
+                          maxWidth: userNFTs?.length < 10 ? "150px" : "40px",
+                          minHeight: "40px",
+                          minWidth: "40px"
+                        }}
+                        key={`${nft.id} - ${nft.name}`}
+                      />
+                    ))}
+                  </>
+                ) : (
+                  <Error message={"No NFTs found."} />
+                )
+              ) : (
+                <div
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                >
+                  Connect your wallet
+                </div>
+              )}
+            </div>
+            {loading ? <Loader /> : null}
+            {active && error ? <Error /> : null}
           </div>
         </div>
         <div id={"button-area"}>
-          {active ? (
-            <button
-              className={`button`}
-              style={{ borderRadius: "50%", padding: "10px 15px" }}
-              onClick={onButtonClick}
-            >
-              <img src={"assets/svgs/download-icon.svg"} alt={"Download"} />
-            </button>
+          {active && userNFTs?.length ? (
+            <>
+              <button
+                className={`button`}
+                style={{
+                  borderRadius: "50%",
+                  padding: "15px 15px 4px",
+                  position: "relative",
+                  bottom: "10px"
+                }}
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+                  setHide(false);
+                  setTimeout(() => setHide(true), 2000);
+                }}
+              >
+                <img src={"assets/svgs/share.svg"} alt={"Share"} />
+              </button>
+              <button
+                className={`button`}
+                style={{
+                  borderRadius: "50%",
+                  padding: "10px 15px",
+                  position: "relative",
+                  bottom: "10px"
+                }}
+                onClick={onButtonClick}
+              >
+                <img
+                  src={"assets/svgs/download-icon.svg"}
+                  alt={"Download"}
+                  {...(downloading ? { className: `rotate` } : undefined)}
+                />
+              </button>
+              {userNFTs?.length && !allReceived ? (
+                <button
+                  className={`button load-more`}
+                  onClick={() => updatePagination()}
+                >
+                  Load more
+                </button>
+              ) : null}
+            </>
           ) : null}
         </div>
       </div>

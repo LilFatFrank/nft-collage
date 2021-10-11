@@ -22,7 +22,10 @@
     border-radius: 5px;
     overflow: hidden;
     #download-area {
-      height: 70%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 100%;
     }
     .header {
       background: #ffddb6;
@@ -30,7 +33,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 0 20px;
-      height: 70px;
+      flex: 1 1 0%;
       .header-label {
         display: flex;
         gap: 12px;
@@ -51,32 +54,40 @@
         color: #adfeff;
       }
     }
-    .content {
-      height: 100%;
-      width: 100%;
-      overflow: auto;
+    .content-area {
+      display: flex;
+      flex-direction: column;
       border: 1px solid #adfeff;
+      flex: 1 1 80%;
+      overflow: hidden;
+      .content {
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 5px 10px;
+        overflow: auto;
 
-      ::-webkit-scrollbar {
-        display: none;
+        img {
+          flex-grow: 1;
+        }
       }
     }
-    .content > div > div > div:first-child {
-      flex-direction: column;
-    }
-    .content > div > div > div > div:first-child {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      row-gap: 10px;
-      column-gap: 5px;
-    }
-    #button-area {
-      height: 29%;
-      display: flex;
-      align-items: end;
-      justify-content: center;
-    }
+  }
+  #button-area {
+    height: 20%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 25px;
+    position: relative;
+  }
+  .load-more {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
   }
   .button {
     text-align: center;
@@ -91,5 +102,36 @@
   }
   .button:active {
     transform: translate(-2px, 4px);
+  }
+  .rotate {
+    animation: rotate 1s infinite linear;
+  }
+}
+.success-note {
+  position: fixed;
+  width: 300px;
+  right: 0px;
+  top: 60px;
+  height: auto;
+  transition: width 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  &.hide {
+    width: 0px !important;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
