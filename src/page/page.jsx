@@ -49,6 +49,10 @@ const Page = (props) => {
     if (active || address) getNFTs(pagination);
   }, [pagination]);
 
+  useEffect(() => {
+    if (chainId !== 1) setUserNFTs([]);
+  }, [chainId]);
+
   const getNFTs = async (params) => {
     try {
       setLoading(true);
