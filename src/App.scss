@@ -6,6 +6,12 @@
   gap: $gap;
 }
 
+.mobile {
+  @include flexBasic(column, center, center, 20px);
+  padding: 40px;
+  height: 100%;
+}
+
 .app {
   height: 100%;
   @include flexBasic("", center, space-between, 60px);

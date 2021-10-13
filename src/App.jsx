@@ -9,7 +9,18 @@ function getLibrary(provider) {
 }
 
 function App() {
-  return (
+  return isMobile || isTablet ? (
+    <div className={`mobile`}>
+      <img
+        src={`assets/images/rainbow-cat.gif`}
+        alt={"rainbow-cat"}
+        style={{ width: "180px" }}
+      />
+      <div style={{ fontSize: isTablet ? "40px" : "32px" }}>
+        Please use a desktop/laptop to view the NFTs. 💻
+      </div>
+    </div>
+  ) : (
     <Web3ReactProvider getLibrary={getLibrary}>
       <Router>
         <Switch>

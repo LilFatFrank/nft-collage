@@ -101,6 +101,7 @@ const Page = (props) => {
   async function disconnect() {
     try {
       await deactivate(injectors);
+      setUserNFTs([]);
     } catch (e) {
       console.log(e);
     }

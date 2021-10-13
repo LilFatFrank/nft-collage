@@ -85,11 +85,16 @@ const ColumnTwo = ({
                   <>
                     {userNFTs?.map((nft) => (
                       <img
-                        src={`${nft.image_url || "assets/images/Question.png"}`}
+                        src={`${
+                          nft.image_url ||
+                          nft.image_preview_url ||
+                          nft.image_thumbnail_url ||
+                          "assets/images/Question.png"
+                        }`}
                         style={{
                           ...imageViewingConfig(userNFTs.length),
-                          minHeight: "40px",
-                          minWidth: "40px"
+                          minHeight: "30px",
+                          minWidth: "30px"
                         }}
                         key={`${nft.id} - ${nft.name}`}
                       />

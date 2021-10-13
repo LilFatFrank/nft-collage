@@ -6,13 +6,13 @@ const imageViewingConfig = (length) => {
     };
   else if (length > 2 && length <= 6)
     return {
-      maxHeight: "240px",
-      maxWidth: "240px"
+      maxHeight: "210px",
+      maxWidth: "210px"
     };
   else if (length > 6 && length <= 10)
     return {
-      maxHeight: "150px",
-      maxWidth: "150px"
+      maxHeight: "140px",
+      maxWidth: "140px"
     };
   else if (length > 10 && length <= 18)
     return {
@@ -21,28 +21,33 @@ const imageViewingConfig = (length) => {
     };
   else if (length > 18 && length <= 30)
     return {
-      maxHeight: "100px",
-      maxWidth: "100px"
+      maxHeight: "90px",
+      maxWidth: "90px"
     };
   else if (length > 30 && length <= 50)
     return {
-      maxHeight: "80px",
-      maxWidth: "80px"
+      maxHeight: "70px",
+      maxWidth: "70px"
     };
-  else if (length < 50 && length <= 80)
-    return {
-      maxHeight: "60px",
-      maxWidth: "60px"
-    };
-  else if (length > 80 && length <= 100)
+  else if (length > 50 && length <= 80)
     return {
       maxHeight: "55px",
       maxWidth: "55px"
     };
+  else if (length > 80 && length <= 100)
+    return {
+      maxHeight: "48px",
+      maxWidth: "48px"
+    };
+  else if (length > 100 && length <= 150)
+    return {
+      maxHeight: "35px",
+      maxWidth: "35px"
+    };
   else
     return {
-      maxHeight: "40px",
-      maxWidth: "40px"
+      maxHeight: "33px",
+      maxWidth: "33px"
     };
 };
 
