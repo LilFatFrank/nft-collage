@@ -1,0 +1,58 @@
+@mixin component-styles($position, $top, $right, $bottom, $left) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  z-index: -1;
+}
+
+.component-1 {
+  @include component-styles(fixed, 32%, "", "", 10px);
+}
+
+.component-2 {
+  @include component-styles(fixed, 55%, "", "", 20%);
+}
+
+.component-3 {
+  @include component-styles(fixed, 80%, "", "", 50px);
+}
+
+.component-4 {
+  @include component-styles(fixed, 20%, "", "", 30%);
+}
+
+.component-5 {
+  @include component-styles(fixed, "", "", "", 40%);
+}
+
+.component-6 {
+  @include component-styles(fixed, "", "", 5%, 45%);
+}
+
+.component-7 {
+  @include component-styles(fixed, 2%, 50%, "", "");
+}
+
+.component-8 {
+  @include component-styles(fixed, 25%, 0px, "", "");
+}
+
+.component-9 {
+  @include component-styles(fixed, 55%, 0px, "", "");
+}
+
+.contact {
+  @include component-styles(fixed, "", 0, 0, "");
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  .twitter {
+    display: flex;
+    gap: 10px;
+    label {
+      font-weight: 600;
+    }
+  }
+}

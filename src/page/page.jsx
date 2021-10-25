@@ -2,6 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 import "../App.scss";
+import { Style } from "../components";
 import { injectors } from "../wallet/connectors";
 import ColumnOne from "./ColumnOne/ColumnOne";
 import ColumnTwo from "./ColumnTwo/ColumnTwo";
@@ -113,6 +114,7 @@ const Page = (props) => {
 
   return active && chainId !== 1 ? null : (
     <div className={`app`}>
+      <Style />
       <ColumnOne
         active={active ? true : false}
         connect={connect}

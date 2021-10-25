@@ -1,7 +1,7 @@
 import "../../App.scss";
 import { toPng } from "html-to-image";
 import { useCallback, useRef, useState } from "react";
-import { Error, Loader } from "../../components";
+import { Error, Loader, Modal } from "../../components";
 import imageViewingConfig from "../../styles/imageViewingConfig";
 
 const ColumnTwo = ({
@@ -15,7 +15,7 @@ const ColumnTwo = ({
 }) => {
   const ref = useRef();
   const [downloading, setDownloading] = useState(false);
-  const [hide, setHide] = useState(true);
+  const [openShare, setOpenShare] = useState(false);
 
   const onButtonClick = useCallback(() => {
     if (ref.current === null) {
@@ -41,25 +41,6 @@ const ColumnTwo = ({
 
   return (
     <>
-      <div className={`success-note ${hide ? "hide" : ""}`}>
-        <div
-          style={{
-            padding: "20px",
-            border: "1px solid #adfeff",
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px"
-          }}
-        >
-          <img
-            src={"assets/svgs/circle.svg"}
-            alt={"Success"}
-            style={{ width: "24px" }}
-          />
-          Link Copied!
-        </div>
-      </div>
       <div className={`column-two`}>
         <div id="download-area" ref={ref}>
           <div className={`header`}>
@@ -132,9 +113,10 @@ const ColumnTwo = ({
                   bottom: "10px"
                 }}
                 onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
+                  setOpenShare(true);
+                  /* navigator.clipboard.writeText(window.location.href);
                   setHide(false);
-                  setTimeout(() => setHide(true), 2000);
+                  setTimeout(() => setHide(true), 2000); */
                 }}
               >
                 <img src={"assets/svgs/share.svg"} alt={"Share"} />
@@ -167,6 +149,7 @@ const ColumnTwo = ({
           ) : null}
         </div>
       </div>
+      <Modal view={openShare} close={() => setOpenShare(false)} />
     </>
   );
 };
