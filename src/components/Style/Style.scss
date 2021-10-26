@@ -8,11 +8,11 @@
 }
 
 .component-1 {
-  @include component-styles(fixed, 32%, "", "", 10px);
+  @include component-styles(fixed, 15%, "", "", 10px);
 }
 
 .component-2 {
-  @include component-styles(fixed, 55%, "", "", 20%);
+  @include component-styles(fixed, 55%, "", "", 10%);
 }
 
 .component-3 {
@@ -20,11 +20,11 @@
 }
 
 .component-4 {
-  @include component-styles(fixed, 20%, "", "", 30%);
+  @include component-styles(fixed, "", "", 15%, 35%);
 }
 
 .component-5 {
-  @include component-styles(fixed, "", "", "", 40%);
+  @include component-styles(fixed, "", "", 1%, 40%);
 }
 
 .component-6 {
@@ -32,19 +32,19 @@
 }
 
 .component-7 {
-  @include component-styles(fixed, 2%, 50%, "", "");
+  @include component-styles(fixed, 5%, 10%, "", "");
 }
 
 .component-8 {
-  @include component-styles(fixed, 25%, 0px, "", "");
+  @include component-styles(fixed, 35%, 5%, "", "");
 }
 
 .component-9 {
-  @include component-styles(fixed, 55%, 0px, "", "");
+  @include component-styles(fixed, 55%, 5%, "", "");
 }
 
 .contact {
-  @include component-styles(fixed, "", 0, 0, "");
+  @include component-styles(fixed, "", 9%, 0, "");
   display: flex;
   gap: 5px;
   flex-direction: column;
@@ -54,6 +54,13 @@
     label {
       font-weight: 600;
       font-family: cursive;
+      position: relative;
+      img {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        z-index: -1;
+      }
     }
   }
 }

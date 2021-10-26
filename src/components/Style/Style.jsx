@@ -18,10 +18,22 @@ const Style = () => {
     <>
       {loadStyling()}
       <div className={`contact`}>
-        <label style={{ fontSize: "18px" }}>Contact</label>
+        <label style={{ fontSize: "18px" }}>
+          Contact
+          <img
+            src={"assets/images/tv.png"}
+            style={{ position: "relative", top: "6px", left: "2px" }}
+          />
+        </label>
         <div className={`twitter`}>
-          <label>@bonoquak</label>
-          <label>@lilfatfrank</label>
+          <label>
+            @bonoquak
+            <img src={"assets/images/scribble-3.png"} />
+          </label>
+          <label>
+            @lilfatfrank
+            <img src={"assets/images/scribble-3.png"} />
+          </label>
         </div>
       </div>
     </>

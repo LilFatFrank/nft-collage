@@ -14,19 +14,28 @@
 
 .app {
   height: 100%;
-  @include flexBasic("", center, space-between, 60px);
+  @include flexBasic("", center, center, 60px);
   padding: 60px 90px;
-  flex: 1 1 100%;
   .column-one {
     height: 100%;
-    @include flexBasic(column, flex-start, space-between, "");
-    flex: 1 1 40%;
+    @include flexBasic(column, center, space-between, "");
+    width: 20%;
+    .wallet-label {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      label {
+        font-family: cursive;
+        font-weight: 600;
+        position: relative;
+      }
+    }
   }
   .column-two {
     height: 100%;
-    flex: 1 1 60%;
     border-radius: 5px;
     overflow: hidden;
+    width: 50%;
     #download-area {
       height: 80%;
       display: flex;
