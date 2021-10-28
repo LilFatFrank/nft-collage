@@ -78,7 +78,7 @@ const Style = () => {
                   fontFamily: "cursive"
                 }}
               >
-                0xab...3BeC
+                0x01...6e2d
               </span>
               {!copied ? (
                 <img
@@ -87,7 +87,7 @@ const Style = () => {
                   style={{ cursor: "pointer" }}
                   onClick={() => {
                     navigator.clipboard.writeText(
-                      "0xabd7ae74065c8d6EBa9bA6312B221785A5033BeC"
+                      "0x0116e61859Dec75c468a6921A9fe538f1ED86e2d"
                     );
                     setCopied(true);
                     setTimeout(() => setCopied(false), 1000);
