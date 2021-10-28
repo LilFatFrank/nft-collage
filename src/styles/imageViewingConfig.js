@@ -11,8 +11,8 @@ const imageViewingConfig = (length) => {
     };
   else if (length > 6 && length <= 10)
     return {
-      maxHeight: "140px",
-      maxWidth: "140px"
+      maxHeight: "135px",
+      maxWidth: "135px"
     };
   else if (length > 10 && length <= 18)
     return {

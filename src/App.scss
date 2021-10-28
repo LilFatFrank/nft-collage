@@ -18,7 +18,7 @@
   padding: 60px 90px;
   .column-one {
     height: 100%;
-    @include flexBasic(column, center, space-between, "");
+    @include flexBasic(column, center, "", 30px);
     width: 20%;
     .wallet-label {
       display: flex;
@@ -76,6 +76,7 @@
       border: 1px solid #adfeff;
       flex: 1 1 80%;
       overflow: hidden;
+      box-shadow: 0px 4px 10px #adfeff;
       .content {
         display: flex;
         gap: 4px;
@@ -123,6 +124,9 @@
   .rotate {
     animation: rotate 1s infinite linear;
   }
+}
+.connect:active {
+  transform: translate(-2px, 4px);
 }
 .success-note {
   position: fixed;

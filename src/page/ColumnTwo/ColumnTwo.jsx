@@ -1,6 +1,6 @@
 import "../../App.scss";
 import { toPng } from "html-to-image";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Error, Loader, Modal } from "../../components";
 import imageViewingConfig from "../../styles/imageViewingConfig";
 
@@ -39,6 +39,16 @@ const ColumnTwo = ({
       });
   }, [ref]);
 
+  useEffect(() => {
+    document
+      .getElementById("content-area")
+      .addEventListener("scroll", loadMore);
+  }, [document.getElementById("content-area")]);
+
+  const loadMore = () => {
+    console.log("here");
+  };
+
   return (
     <>
       <div className={`column-two`}>
@@ -59,7 +69,7 @@ const ColumnTwo = ({
             </div>
             <div className={`site-name`}>mynfts.show</div>
           </div>
-          <div className={`content-area`}>
+          <div className={`content-area`} id="content-area">
             <div className={`content`}>
               {active && !error ? (
                 userNFTs?.length ? (
@@ -75,7 +85,9 @@ const ColumnTwo = ({
                         style={{
                           ...imageViewingConfig(userNFTs.length),
                           minHeight: "30px",
-                          minWidth: "30px"
+                          minWidth: "30px",
+                          borderRadius: "2px",
+                          boxShadow: "0px 2px 2px #F7D046"
                         }}
                         key={`${nft.id} - ${nft.name}`}
                       />
@@ -104,46 +116,38 @@ const ColumnTwo = ({
         <div id={"button-area"}>
           {active && userNFTs?.length ? (
             <>
-              <button
-                className={`button`}
-                style={{
-                  borderRadius: "50%",
-                  padding: "15px 15px 4px",
-                  position: "relative",
-                  bottom: "10px"
-                }}
-                onClick={() => {
-                  setOpenShare(true);
-                  /* navigator.clipboard.writeText(window.location.href);
-                  setHide(false);
-                  setTimeout(() => setHide(true), 2000); */
-                }}
-              >
-                <img src={"assets/svgs/share.svg"} alt={"Share"} />
-              </button>
-              <button
-                className={`button`}
-                style={{
-                  borderRadius: "50%",
-                  padding: "10px 15px",
-                  position: "relative",
-                  bottom: "10px"
-                }}
+              <img
+                src={"assets/svgs/share-button.svg"}
+                className={`connect`}
+                onClick={() => setOpenShare(true)}
+                style={{ cursor: "pointer" }}
+              />
+              <img
+                src={"assets/svgs/download-button.svg"}
+                className={`connect ${downloading ? "rotate" : ""}`}
                 onClick={onButtonClick}
-              >
-                <img
-                  src={"assets/svgs/download-icon.svg"}
-                  alt={"Download"}
-                  {...(downloading ? { className: `rotate` } : undefined)}
-                />
-              </button>
+                style={{ cursor: "pointer" }}
+              />
               {userNFTs?.length && !allReceived ? (
-                <button
-                  className={`button load-more`}
+                <span
+                  className={`load-more connect`}
+                  style={{ cursor: "pointer" }}
                   onClick={() => updatePagination()}
                 >
-                  Load more
-                </button>
+                  <img src={`assets/svgs/tip.svg`} width={100} />
+                  <span
+                    style={{
+                      position: "absolute",
+                      zIndex: "1",
+                      left: "35%",
+                      bottom: "35%"
+                    }}
+                  >
+                    load
+                    <br />
+                    more
+                  </span>
+                </span>
               ) : null}
             </>
           ) : null}

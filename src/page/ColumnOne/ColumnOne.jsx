@@ -9,13 +9,13 @@ const ColumnOne = ({ connect, disconnect, active }) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "20px"
+            gap: "0px"
           }}
         >
           <img
             src={`assets/images/rainbow-cat.gif`}
             alt={"rainbow-cat"}
-            style={{ width: "180px" }}
+            style={{ width: "150px" }}
           />
           <div style={{ fontSize: "40px" }}>
             View and flex your{" "}
@@ -28,9 +28,12 @@ const ColumnOne = ({ connect, disconnect, active }) => {
             </span>
           </div>
         </div>
-        <button className={`button`} onClick={active ? disconnect : connect}>
-          {active ? `Disconnect` : `Connect`}
-        </button>
+        <img
+          src={"assets/svgs/connect-button.svg"}
+          style={{ cursor: "pointer" }}
+          className={`connect`}
+          onClick={active ? disconnect : connect}
+        />
         <div className={`wallet-label`}>
           <label style={{ transform: "rotate(-5deg)" }}>
             connect that shiz

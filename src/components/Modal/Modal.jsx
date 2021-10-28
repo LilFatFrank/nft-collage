@@ -49,17 +49,12 @@ const Modal = ({ close, view }) => {
             />
           )}
         </div>
-        <button
-          className={`button`}
-          style={{
-            margin: "10px 0",
-            borderRadius: "50%",
-            padding: "5px 10px"
-          }}
+        <img
+          src={"assets/svgs/close-button.svg"}
+          style={{ cursor: "pointer" }}
+          className={`connect`}
           onClick={close}
-        >
-          x
-        </button>
+        />
       </div>
     </div>
   ) : null;

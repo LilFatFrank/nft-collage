@@ -40,7 +40,7 @@ const Page = (props) => {
       userNFTs &&
       userNFTs?.length &&
       !allReceived &&
-      userNFTs?.length < 200
+      userNFTs?.length < 250
     ) {
       updatePagination();
     }

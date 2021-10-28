@@ -32,7 +32,7 @@
 }
 
 .component-7 {
-  @include component-styles(fixed, 5%, 10%, "", "");
+  @include component-styles(fixed, 5%, 8%, "", "");
 }
 
 .component-8 {
@@ -43,8 +43,27 @@
   @include component-styles(fixed, 55%, 5%, "", "");
 }
 
+.tip {
+  position: fixed;
+  bottom: 5%;
+  left: 20%;
+  cursor: pointer;
+}
+
+.eth-address {
+  position: fixed;
+  bottom: 5%;
+  left: 27%;
+  height: auto;
+  max-width: auto;
+  border: 1px solid #adfeff;
+  box-shadow: 0 4px 10px #adfeff;
+  background: #fff;
+  z-index: 1;
+}
+
 .contact {
-  @include component-styles(fixed, "", 9%, 0, "");
+  @include component-styles(fixed, "", 3%, 3%, "");
   display: flex;
   gap: 5px;
   flex-direction: column;
