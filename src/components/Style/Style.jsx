@@ -3,6 +3,7 @@ import "./Style.scss";
 
 const Style = () => {
   const [showAddress, setShowAddress] = useState(false);
+  const [showContact, setShowContact] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const loadStyling = () => {
@@ -30,15 +31,15 @@ const Style = () => {
             style={{
               position: "absolute",
               top: "15%",
-              left: "35%",
-              fontWeight: "600",
-              fontFamily: "cursive",
-              background: "yellow",
-              padding: "5px",
-              borderRadius: "10px"
+              left: "35%"
             }}
           >
-            tip
+            <img
+              src={`assets/images/tip-coin.gif`}
+              alt={"tip-coin"}
+              width={30}
+              height={30}
+            />
           </span>
         ) : (
           <img
@@ -101,24 +102,30 @@ const Style = () => {
         </div>
       ) : null}
       <div className={``}></div>
-      <div className={`contact`}>
+      <div
+        className={`contact`}
+        onMouseEnter={() => setShowContact(true)}
+        onMouseLeave={() => setShowContact(false)}
+      >
         <label style={{ fontSize: "18px" }}>
-          Contact
+          Do Not Contact
           <img
             src={"assets/images/tv.png"}
             style={{ position: "relative", top: "6px", left: "2px" }}
           />
         </label>
-        <div className={`twitter`}>
-          <label>
-            @bonoquak
-            <img src={"assets/images/scribble-3.png"} />
-          </label>
-          <label>
-            @lilfatfrank
-            <img src={"assets/images/scribble-3.png"} />
-          </label>
-        </div>
+        {showContact ? (
+          <div className={`twitter`}>
+            <label>
+              @bonoquak
+              <img src={"assets/images/scribble-3.png"} />
+            </label>
+            <label>
+              @lilfatfrank
+              <img src={"assets/images/scribble-3.png"} />
+            </label>
+          </div>
+        ) : null}
       </div>
     </>
   );

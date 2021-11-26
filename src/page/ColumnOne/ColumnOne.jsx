@@ -29,7 +29,11 @@ const ColumnOne = ({ connect, disconnect, active }) => {
           </div>
         </div>
         <img
-          src={"assets/svgs/connect-button.svg"}
+          src={
+            active
+              ? "assets/svgs/disconnect-button.svg"
+              : "assets/svgs/connect-button.svg"
+          }
           style={{ cursor: "pointer" }}
           className={`connect`}
           onClick={active ? disconnect : connect}

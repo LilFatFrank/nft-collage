@@ -67,9 +67,17 @@
   display: flex;
   gap: 5px;
   flex-direction: column;
+  z-index: 1;
   .twitter {
     display: flex;
     gap: 10px;
+    position: absolute;
+    padding: 10px;
+    bottom: 30px;
+    right: -10px;
+    border: 1px solid #adfeff;
+    box-shadow: 0 4px 10px #adfeff;
+    background: #fff;
     label {
       font-weight: 600;
       font-family: cursive;
