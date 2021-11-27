@@ -94,23 +94,11 @@ const ColumnTwo = ({
                       />
                     ))}
                   </>
-                ) : (
+                ) : !loading ? (
                   <Error message={"No NFTs found."} />
-                )
+                ) : null
               ) : (
-                <>
-                  {/* <div
-                    style={{
-                      height: "100%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center"
-                    }}
-                  >
-                    Connect your wallet
-                  </div> */}
-                  <SolamasAnimation />
-                </>
+                <SolamasAnimation />
               )}
             </div>
             {loading ? <Loader /> : null}
@@ -124,7 +112,7 @@ const ColumnTwo = ({
                 src={"assets/svgs/share-button.svg"}
                 className={`connect`}
                 onClick={() => setOpenShare(!openShare)}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginBottom: "10px" }}
                 width={60}
                 height={60}
               />
@@ -134,7 +122,7 @@ const ColumnTwo = ({
                 onClick={onButtonClick}
                 width={60}
                 height={60}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginBottom: "10px" }}
               />
               {userNFTs?.length && !allReceived ? (
                 <span

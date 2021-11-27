@@ -60,7 +60,7 @@ const Page = (props) => {
       const response = await fetch(
         `https://api.opensea.io/api/v1/assets?owner=${
           account || address
-        }&order_direction=desc&offset=${params["offset"]}&limit=${
+        }&offset=${params["offset"]}&limit=${
           params["limit"]
         }`
       );

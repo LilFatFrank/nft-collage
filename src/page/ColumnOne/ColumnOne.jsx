@@ -56,7 +56,7 @@ const ColumnOne = ({ connect, disconnect, active }) => {
             />
           </label>
           <label style={{ transform: "rotate(5deg)" }}>
-            share that shizzzz
+            shaaaaaare that shizzzz
             <img
               src={"assets/images/scribble-2.png"}
               style={{ position: "absolute", left: "5%", zIndex: "-1" }}
