@@ -114,6 +114,18 @@ const Page = (props) => {
 
   return active && chainId !== 1 ? null : (
     <div className={`app`}>
+      <img
+        src={"assets/images/app-background.png"}
+        alt={"app-background"}
+        style={{
+          position: "fixed",
+          height: "100%",
+          width: "100%",
+          top: 0,
+          left: 0,
+          zIndex: -2
+        }}
+      />
       <Style />
       <ColumnOne
         active={active ? true : false}

@@ -1,104 +1,104 @@
 export const dummyData = {
   rowOne: [
     {
-      src: `assets/images/squirrel.png`,
-      alt: `Squirrel`,
+      src: `assets/images/cryptoadz.png`,
+      alt: `cryptoadz`
     },
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
+      alt: `Question`
     },
     {
-      src: `assets/images/ArtGenesis.png`,
-      alt: `Art Genesis`,
+      src: `assets/images/meebits.jpg`,
+      alt: `Meebits`
     },
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
+      alt: `Question`
     },
     {
       src: `assets/images/punk.png`,
-      alt: `Punk`,
+      alt: `Punk`
     },
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
+      alt: `Question`
     },
     {
       src: `assets/images/ape.png`,
-      alt: `Ape`,
+      alt: `Ape`
     },
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
-    },
+      alt: `Question`
+    }
   ],
   rowTwo: [
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
+      alt: `Question`
     },
     {
-      src: `assets/images/punk.png`,
-      alt: `Punk`,
-    },
-    {
-      src: `assets/images/Question.png`,
-      alt: `Question`,
-    },
-    {
-      src: `assets/images/ape.png`,
-      alt: `Ape`,
+      src: `assets/images/wolf-game.svg`,
+      alt: `Wolf-Game`
     },
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
+      alt: `Question`
+    },
+    {
+      src: `assets/images/sand-box.jpg`,
+      alt: `Sand Box`
+    },
+    {
+      src: `assets/images/Question.png`,
+      alt: `Question`
     },
     {
       src: `assets/images/loot.png`,
-      alt: `Loot`,
+      alt: `Loot`
     },
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
+      alt: `Question`
     },
     {
       src: `assets/images/cat.png`,
-      alt: `Cat`,
-    },
+      alt: `Cat`
+    }
   ],
   rowThree: [
     {
-      src: `assets/images/loot.png`,
-      alt: `Loot`,
+      src: `assets/images/Doodles.png`,
+      alt: `Doodles`
     },
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
+      alt: `Question`
     },
     {
-      src: `assets/images/cat.png`,
-      alt: `Cat`,
-    },
-    {
-      src: `assets/images/Question.png`,
-      alt: `Question`,
-    },
-    {
-      src: `assets/images/squirrel.png`,
-      alt: `Squirrel`,
+      src: `assets/images/Bricktopians.jpg`,
+      alt: `Bricktopians`
     },
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
+      alt: `Question`
     },
     {
-      src: `assets/images/ArtGenesis.png`,
-      alt: `Art Genesis`,
+      src: `assets/images/cryptokongz.png`,
+      alt: `cryptokongz`
     },
     {
       src: `assets/images/Question.png`,
-      alt: `Question`,
+      alt: `Question`
     },
-  ],
+    {
+      src: `assets/images/doge-pount.png`,
+      alt: `doge-pound`
+    },
+    {
+      src: `assets/images/Question.png`,
+      alt: `Question`
+    }
+  ]
 };

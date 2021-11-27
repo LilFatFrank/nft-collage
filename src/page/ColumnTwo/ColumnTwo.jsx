@@ -3,6 +3,7 @@ import { toPng } from "html-to-image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Error, Loader, Modal } from "../../components";
 import imageViewingConfig from "../../styles/imageViewingConfig";
+import SolamasAnimation from "../SolamasAnimation/SolamasAnimation";
 
 const ColumnTwo = ({
   active,
@@ -97,16 +98,19 @@ const ColumnTwo = ({
                   <Error message={"No NFTs found."} />
                 )
               ) : (
-                <div
-                  style={{
-                    height: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }}
-                >
-                  Connect your wallet
-                </div>
+                <>
+                  {/* <div
+                    style={{
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                  >
+                    Connect your wallet
+                  </div> */}
+                  <SolamasAnimation />
+                </>
               )}
             </div>
             {loading ? <Loader /> : null}
@@ -119,13 +123,17 @@ const ColumnTwo = ({
               <img
                 src={"assets/svgs/share-button.svg"}
                 className={`connect`}
-                onClick={() => setOpenShare(true)}
+                onClick={() => setOpenShare(!openShare)}
                 style={{ cursor: "pointer" }}
+                width={60}
+                height={60}
               />
               <img
                 src={"assets/svgs/download-button.svg"}
                 className={`connect ${downloading ? "rotate" : ""}`}
                 onClick={onButtonClick}
+                width={60}
+                height={60}
                 style={{ cursor: "pointer" }}
               />
               {userNFTs?.length && !allReceived ? (
@@ -134,7 +142,7 @@ const ColumnTwo = ({
                   style={{ cursor: "pointer" }}
                   onClick={() => updatePagination()}
                 >
-                  <img src={`assets/svgs/tip.svg`} width={100} />
+                  <img src={`assets/svgs/tip.svg`} width={80} />
                   <span
                     style={{
                       position: "absolute",

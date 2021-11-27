@@ -116,14 +116,22 @@ const Style = () => {
         </label>
         {showContact ? (
           <div className={`twitter`}>
-            <label>
+            <a
+              href="https://twitter.com/BonoQuak"
+              target="_blank"
+              rel="noreferrer"
+            >
               @bonoquak
               <img src={"assets/images/scribble-3.png"} />
-            </label>
-            <label>
+            </a>
+            <a
+              href="https://twitter.com/LilFatFrank"
+              target="_blank"
+              rel="noreferrer"
+            >
               @lilfatfrank
               <img src={"assets/images/scribble-3.png"} />
-            </label>
+            </a>
           </div>
         ) : null}
       </div>

@@ -54,6 +54,8 @@ const Modal = ({ close, view }) => {
           style={{ cursor: "pointer" }}
           className={`connect`}
           onClick={close}
+          width={30}
+          height={30}
         />
       </div>
     </div>

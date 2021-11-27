@@ -67,16 +67,17 @@
         font-family: cursive;
         font-weight: 600;
         font-size: 18px;
-        color: #adfeff;
+        color: rgba(0, 0, 0, 0.6);
       }
     }
     .content-area {
+      background: #fff;
       display: flex;
       flex-direction: column;
       border: 1px solid #adfeff;
       flex: 1 1 80%;
       overflow: hidden;
-      box-shadow: 0px 4px 10px #adfeff;
+      box-shadow: 0px 3px 12px #adfeff;
       .content {
         display: flex;
         gap: 4px;

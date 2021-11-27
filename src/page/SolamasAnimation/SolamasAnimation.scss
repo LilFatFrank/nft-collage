@@ -1,0 +1,52 @@
+.solamas-animation-content {
+  padding: 30px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  .rowContainer {
+    position: relative;
+    max-width: 430px;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    .row {
+      display: flex;
+      gap: 20px;
+      &.animate {
+        animation: bannermove 7s alternate infinite;
+        animation-timing-function: ease-in-out;
+      }
+      &.reverse {
+        animation: bannermoveReverse 7s alternate infinite;
+        animation-timing-function: ease-in-out;
+      }
+    }
+    .image {
+      width: 90px;
+      height: 90px;
+      flex-grow: 1;
+    }
+  }
+}
+
+@keyframes bannermove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-110%, 0);
+  }
+}
+
+@keyframes bannermoveReverse {
+  0% {
+    transform: translate(-100%, 0);
+  }
+  100% {
+    transform: translate(0%, 0);
+  }
+}

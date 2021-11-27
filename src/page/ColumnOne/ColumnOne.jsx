@@ -15,7 +15,7 @@ const ColumnOne = ({ connect, disconnect, active }) => {
           <img
             src={`assets/images/rainbow-cat.gif`}
             alt={"rainbow-cat"}
-            style={{ width: "150px" }}
+            style={{ width: "150px", borderRadius: "50%" }}
           />
           <div style={{ fontSize: "40px" }}>
             View and flex your{" "}
@@ -37,6 +37,8 @@ const ColumnOne = ({ connect, disconnect, active }) => {
           style={{ cursor: "pointer" }}
           className={`connect`}
           onClick={active ? disconnect : connect}
+          width={250}
+          height={70}
         />
         <div className={`wallet-label`}>
           <label style={{ transform: "rotate(-5deg)" }}>
