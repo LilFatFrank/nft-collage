@@ -2,7 +2,7 @@ import "../../App.scss";
 import { toPng } from "html-to-image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Error, Loader, Modal } from "../../components";
-import imageViewingConfig from "../../styles/imageViewingConfig";
+import { imageViewingConfig } from "../../styles/imageViewingConfig";
 import SolamasAnimation from "../SolamasAnimation/SolamasAnimation";
 
 const ColumnTwo = ({

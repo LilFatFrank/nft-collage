@@ -1,4 +1,4 @@
-const imageViewingConfig = (length) => {
+export const imageViewingConfig = (length) => {
   if (length === 1 || length === 2)
     return {
       maxHeight: "300px",
@@ -45,5 +45,3 @@ const imageViewingConfig = (length) => {
       maxWidth: "31.5px"
     };
 };
-
-export default imageViewingConfig;
