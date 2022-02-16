@@ -60,9 +60,13 @@ const Page = (props) => {
       const response = await fetch(
         `https://api.opensea.io/api/v1/assets?owner=${
           account || address
-        }&offset=${params["offset"]}&limit=${
-          params["limit"]
-        }`
+        }&offset=${params["offset"]}&limit=${params["limit"]}`,
+        {
+          headers: {
+            Accept: "application/json",
+            "X-API-KEY": process.env.REACT_APP_API_KEY
+          }
+        }
       );
       const data = await response.json();
       if (data) {
@@ -112,7 +116,7 @@ const Page = (props) => {
     }
   }
 
-  return active && chainId !== 1 ? null : (
+  return (
     <div className={`app`}>
       <img
         src={"assets/images/app-background.png"}

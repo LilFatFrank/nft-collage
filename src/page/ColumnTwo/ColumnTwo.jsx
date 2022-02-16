@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Error, Loader, Modal } from "../../components";
 import { imageViewingConfig } from "../../styles/imageViewingConfig";
 import SolamasAnimation from "../SolamasAnimation/SolamasAnimation";
+import { useWeb3React } from "@web3-react/core";
 
 const ColumnTwo = ({
   active,
@@ -17,6 +18,7 @@ const ColumnTwo = ({
   const ref = useRef();
   const [downloading, setDownloading] = useState(false);
   const [openShare, setOpenShare] = useState(false);
+  const { chainId } = useWeb3React();
 
   const onButtonClick = useCallback(() => {
     if (ref.current === null) {
@@ -60,7 +62,7 @@ const ColumnTwo = ({
                 <img src={`assets/images/header-cat.png`} alt={"header-cat"} />
               </div>
               <div style={{ fontSize: "24px" }}>
-                {active
+                {active && chainId === 1
                   ? `${account.slice(0, 4)}...${account.slice(
                       account.length - 4,
                       account.length
@@ -72,7 +74,7 @@ const ColumnTwo = ({
           </div>
           <div className={`content-area`} id="content-area">
             <div className={`content`}>
-              {active && !error ? (
+              {active && !error && chainId === 1 ? (
                 userNFTs?.length ? (
                   <>
                     {userNFTs?.map((nft) => (
@@ -103,6 +105,11 @@ const ColumnTwo = ({
             </div>
             {loading ? <Loader /> : null}
             {active && error ? <Error /> : null}
+            {active && chainId !== 1 ? (
+              <Error
+                message={"Switch your wallet network to Ethereum mainnet"}
+              />
+            ) : null}
           </div>
         </div>
         <div id={"button-area"}>
