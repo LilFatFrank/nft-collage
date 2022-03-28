@@ -23,6 +23,10 @@ body {
   height: 100vh;
 }
 
+body > iframe {
+  display: none;
+}
+
 #root {
   height: 100%;
   width: 100%;

@@ -2,7 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 import "../App.scss";
-import { Style } from "../components";
+import { Modal, Style } from "../components";
 import { injectors } from "../wallet/connectors";
 import ColumnOne from "./ColumnOne/ColumnOne";
 import ColumnTwo from "./ColumnTwo/ColumnTwo";
@@ -19,6 +19,18 @@ const Page = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [address, setAddress] = useState(undefined);
+  const [showWrongNetworkModal, setShowWrongNetworkModal] = useState(false);
+
+  useEffect(async () => {
+    if (window.ethereum) {
+      await window.ethereum.enable();
+      if (window.ethereum.chainId !== "0x1") setShowWrongNetworkModal(true);
+      window.ethereum.on("chainChanged", (chain) => {
+        setShowWrongNetworkModal(chain !== "0x1");
+        connect();
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (props.match.params.address) setAddress(props.match.params.address);
@@ -32,6 +44,8 @@ const Page = (props) => {
     if (active) {
       getNFTs(pagination);
       window.history.replaceState(null, "", `/${account}`);
+    } else {
+      window.history.replaceState(null, "", `/`);
     }
   }, [active]);
 
@@ -109,43 +123,81 @@ const Page = (props) => {
 
   async function disconnect() {
     try {
-      await deactivate(injectors);
+      deactivate(injectors);
       setUserNFTs([]);
     } catch (e) {
       console.log(e);
     }
   }
 
+  const changeNetwork = async () => {
+    if (window.ethereum.networkVersion !== "1") {
+      try {
+        await window.ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: "0x1" }]
+        });
+      } catch (err) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        if (err.code === 4902) {
+          await window.ethereum.request({
+            method: "wallet_addEthereumChain",
+            params: [
+              {
+                chainName: "Ethereum Mainnet",
+                chainId: "0x1",
+                nativeCurrency: {
+                  name: "ETH",
+                  decimals: 18,
+                  symbol: "ETH"
+                },
+                rpcUrls: ["https://mainnet.infura.io/v3/"]
+              }
+            ]
+          });
+        }
+      }
+    }
+  };
+
   return (
-    <div className={`app`}>
-      <img
-        src={"assets/images/app-background.png"}
-        alt={"app-background"}
-        style={{
-          position: "fixed",
-          height: "100%",
-          width: "100%",
-          top: 0,
-          left: 0,
-          zIndex: -2
-        }}
+    <>
+      <div className={`app`}>
+        <img
+          src={"assets/images/app-background.png"}
+          alt={"app-background"}
+          style={{
+            position: "fixed",
+            height: "100%",
+            width: "100%",
+            top: 0,
+            left: 0,
+            zIndex: -2
+          }}
+        />
+        <Style />
+        <ColumnOne
+          active={active ? true : false}
+          connect={connect}
+          disconnect={disconnect}
+        />
+        <ColumnTwo
+          active={active || address ? true : false}
+          account={account || address}
+          userNFTs={userNFTs}
+          allReceived={allReceived}
+          updatePagination={updatePagination}
+          loading={loading}
+          error={error}
+        />
+      </div>
+      <Modal
+        type={"switch"}
+        close={() => setShowWrongNetworkModal(false)}
+        view={showWrongNetworkModal}
+        switchNetwork={changeNetwork}
       />
-      <Style />
-      <ColumnOne
-        active={active ? true : false}
-        connect={connect}
-        disconnect={disconnect}
-      />
-      <ColumnTwo
-        active={active || address ? true : false}
-        account={account || address}
-        userNFTs={userNFTs}
-        allReceived={allReceived}
-        updatePagination={updatePagination}
-        loading={loading}
-        error={error}
-      />
-    </div>
+    </>
   );
 };
 
