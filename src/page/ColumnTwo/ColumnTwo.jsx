@@ -4,7 +4,6 @@ import { useCallback, useRef, useState } from "react";
 import { Error, Loader, Modal } from "../../components";
 import { imageViewingConfig } from "../../styles/imageViewingConfig";
 import SolamasAnimation from "../SolamasAnimation/SolamasAnimation";
-import { useWeb3React } from "@web3-react/core";
 
 const ColumnTwo = ({
   active,
