@@ -1,7 +1,6 @@
 import { isMobile, isTablet } from 'react-device-detect'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { WagmiConfig, createClient, configureChains, chain } from 'wagmi'
-import { ConnectKitProvider } from 'connectkit'
 import { infuraProvider } from 'wagmi/providers/infura'
 import page from './page/page'
 
@@ -31,14 +30,12 @@ function App() {
     </div>
   ) : (
     <WagmiConfig client={client}>
-      <ConnectKitProvider>
-        <Router>
-          <Switch>
-            <Route exact path={'/'} component={page} />
-            <Route exact path={'/:address'} component={page} />
-          </Switch>
-        </Router>
-      </ConnectKitProvider>
+      <Router>
+        <Switch>
+          <Route exact path={'/'} component={page} />
+          <Route exact path={'/:address'} component={page} />
+        </Switch>
+      </Router>
     </WagmiConfig>
   )
 }
